@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bizUnit id="FBIZTRGT001">
+    <bizUnitName>[FU]영업목표/현황관리</bizUnitName>
+    <parentClassXd>BFU</parentClassXd>
+    <componentId>biz.BIZTRGT</componentId>
+    <description>영업목표/현황관리 FU</description>
+    <method-list>
+        <method id="fDeleteBizTrgt">
+            <methodName>[FM]영업목표/현황관리 삭제</methodName>
+            <transactionId>biz.BIZTRGT@FBIZTRGT001_fDeleteBizTrgt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>[FM]영업목표/현황관리 삭제 FM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-05T13:59:38" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+        <method id="fDetailBizTrgt">
+            <methodName>[FM]영업목표/현황관리 상세</methodName>
+            <transactionId>biz.BIZTRGT@FBIZTRGT001_fDetailBizTrgt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>영업목표/현황관리 상세조회 FM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-05T14:09:36" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+        <method id="fUpdateBizTrgt">
+            <methodName>[FM]영업목표/현황관리 수정</methodName>
+            <transactionId>biz.BIZTRGT@FBIZTRGT001_fUpdateBizTrgt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>[FM]영업목표/현황관리 수정 FM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-05T13:59:13" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+        <method id="fInsertBizTrgt">
+            <methodName>[FM]영업목표/현황관리 저장</methodName>
+            <transactionId>biz.BIZTRGT@FBIZTRGT001_fInsertBizTrgt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>영업목표/현황관리 저장FM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-05T13:58:24" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+        <method id="fSearchBizTrgt">
+            <methodName>[FM]영업목표/현황관리 조회</methodName>
+            <transactionId>biz.BIZTRGT@FBIZTRGT001_fSearchBizTrgt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>영업목표/현황관리 조회 FM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-04T17:20:02" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+        <method id="fInsertBizRcvGrp">
+            <methodName>[FM]영업목표/현황그룹 저장</methodName>
+            <transactionId>biz.BIZTRGT@FBIZTRGT001_fInsertBizRcvGrp</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description/>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2015-01-22T14:04:11" user="이승훈2 (gunyoung)"/>
+            </history>
+        </method>
+        <method id="fInsertBizRcvOrg">
+            <methodName>[FM]영업목표/현황조직 저장</methodName>
+            <transactionId>biz.BIZTRGT@FBIZTRGT001_fInsertBizRcvOrg</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description/>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2015-01-22T14:01:46" user="이승훈2 (gunyoung)"/>
+            </history>
+        </method>
+        <method id="fSearchBizTrgtBrws">
+            <methodName>[FM]영업목표/현황조회</methodName>
+            <transactionId>biz.BIZTRGT@FBIZTRGT001_fSearchBizTrgtBrws</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description/>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2015-01-22T14:02:50" user="이승훈2 (gunyoung)"/>
+            </history>
+        </method>
+    </method-list>
+    <xsql/>
+    <history>
+        <created date="2014-12-04T17:17:43" user="한상곤 (hansanggon)"/>
+    </history>
+</bizUnit>

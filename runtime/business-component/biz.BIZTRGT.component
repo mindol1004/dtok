@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component fqId="biz.BIZTRGT">
+    <componentName>[BC]업무-영업목표/현황관리</componentName>
+    <bizGroupXd>biz</bizGroupXd>
+    <packageName>com.psnm.dtok.biz.biztrgt</packageName>
+    <componentTypeXd>BC</componentTypeXd>
+    <description>영업목표/현황관리 컴포넌트</description>
+    <custom-props/>
+    <history>
+        <created date="2014-12-04T17:15:26" user="한상곤 (hansanggon)"/>
+    </history>
+</component>

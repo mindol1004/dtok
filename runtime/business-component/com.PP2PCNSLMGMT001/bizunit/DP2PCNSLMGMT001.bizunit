@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bizUnit id="DP2PCNSLMGMT001">
+    <bizUnitName>[DU]1대1문의등록</bizUnitName>
+    <parentClassXd>BDU</parentClassXd>
+    <componentId>com.PP2PCNSLMGMT001</componentId>
+    <description>[DU]1대1문의등록</description>
+    <method-list>
+        <method id="dDeleteP2pCnsl">
+            <methodName>[DM]1대1문의등록삭제</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLMGMT001_dDeleteP2pCnsl</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 정보를 삭제하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dInsertP2pCnsl">
+            <methodName>[DM]1대1문의등록저장</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLMGMT001_dInsertP2pCnsl</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 정보를 추가하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dSearchP2pCnsl">
+            <methodName>[DM]1대1문의등록조회</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLMGMT001_dSearchP2pCnsl</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 검색을 위하여 관련 테이블(DSM_P2P_CNSL, DSM_P2P_CNSL_CMNT)을 조인하여 1:1문의 객체를 map객체로 가져오는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dUpdateP2pCnsl">
+            <methodName>[DM]1대1문의등록수정</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLMGMT001_dUpdateP2pCnsl</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 정보를 수정하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+    </method-list>
+    <xsql/>
+    <history>
+        <created date="2014-12-11T17:48:00" user="이승훈 (leeseunghun)"/>
+    </history>
+</bizUnit>

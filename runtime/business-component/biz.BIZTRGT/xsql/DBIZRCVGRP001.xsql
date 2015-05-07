@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DBIZRCVGRP001">
+	<select id="dSearchBizRcvGrpTarget" resultClass="hmap" fetchSize="50" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZRCVGRP001.dSearchBizRcvGrpTarget  */
+/* IO: 이승훈2,2015-01-22T16:35:01(이승훈2,2015-01-22T16:35:01) */
+	SELECT A.AUTH_GRP_ID
+		, A.AUTH_GRP_NM
+       	, A.AUTH_GRP_DESC
+  	FROM DSM_AUTH_GRP A
+ 	WHERE A.AUTH_GRP_ID NOT IN ( 	SELECT X.AUTH_GRP_ID
+									FROM DSM_BIZ_RCV_GRP X
+                              		WHERE A.AUTH_GRP_ID = X.AUTH_GRP_ID
+                                	AND X.BIZ_ID = #BIZ_ID#
+                                	UNION
+									SELECT A.AUTH_GRP_ID
+                               		FROM DSM_AUTH_GRP A
+                              		WHERE A.AUTH_GRP_ID = '99'
+                            	) 
+	AND A.USE_YN = 'Y'
+ 	ORDER BY A.AUTH_PRTY]]>
+	</select>
+	<delete id="dDeleteBizRcvGrp" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZRCVGRP001.dDeleteBizRcvGrp  */
+/* IO: 이승훈2,2015-01-22T16:32:44(이승훈2,2015-01-22T16:32:35) */
+DELETE FROM DSM_BIZ_RCV_GRP WHERE BIZ_ID = #BIZ_ID#]]>
+	</delete>
+	<insert id="dInsertBizRcvGrp" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZRCVGRP001.dInsertBizRcvGrp  */
+/* IO: 이승훈2,2015-01-23T11:07:26(이승훈2,2015-01-22T16:32:21) */
+INSERT INTO DSM_BIZ_RCV_GRP
+		(  BIZ_ID
+		, AUTH_GRP_ID
+  		, RGSTR_ID
+  		, RGST_DTM
+  		, UPDR_ID
+  		, UPD_DTM )
+		VALUES
+		(  #BIZ_ID#
+  		, #AUTH_GRP_ID#
+  		, #onlineContext.userInfo.loginId#
+  		, SYSDATE
+  		, #onlineContext.userInfo.loginId#
+  		, SYSDATE )]]>
+	</insert>
+	<select id="dSearchBizRcvGrpObject" parameterClass="map" resultClass="hmap" fetchSize="50" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZRCVGRP001.dSearchBizRcvGrpObject  */
+/* IO: 이승훈2,2015-01-22T16:34:44(이승훈2,2015-01-22T16:34:44) */
+	SELECT X.*
+	FROM (
+		SELECT A.AUTH_GRP_ID
+			, B.AUTH_GRP_NM
+			, B.AUTH_GRP_DESC
+		FROM DSM_BIZ_RCV_GRP A
+  		JOIN DSM_AUTH_GRP B ON (A.AUTH_GRP_ID = B.AUTH_GRP_ID)
+ 		WHERE A.BIZ_ID = #BIZ_ID#
+ 		UNION 
+ 		SELECT A.AUTH_GRP_ID
+       		, A.AUTH_GRP_NM
+       		, A.AUTH_GRP_DESC
+  		FROM DSM_AUTH_GRP A
+       	LEFT JOIN DSM_BIZ_RCV_GRP B ON (A.AUTH_GRP_ID = B.AUTH_GRP_ID)
+ 		WHERE A.AUTH_GRP_ID = '99'
+		) X
+ 	ORDER BY X.AUTH_GRP_ID]]>
+	</select>
+</sqlMap>

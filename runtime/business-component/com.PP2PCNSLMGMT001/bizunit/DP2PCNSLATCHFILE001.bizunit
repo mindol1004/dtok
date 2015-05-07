@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bizUnit id="DP2PCNSLATCHFILE001">
+    <bizUnitName>[DU]1대1문의등록첨부파일</bizUnitName>
+    <parentClassXd>BDU</parentClassXd>
+    <componentId>com.PP2PCNSLMGMT001</componentId>
+    <description>[DU]1대1문의등록</description>
+    <method-list>
+        <method id="dDeleteP2pCnslAtchFile">
+            <methodName>[DM]1대1문의등록첨부파일삭제</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLATCHFILE001_dDeleteP2pCnslAtchFile</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 첨부파일 정보를 삭제하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dInsertP2pCnslAtchFile">
+            <methodName>[DM]1대1문의등록첨부파일저장</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLATCHFILE001_dInsertP2pCnslAtchFile</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 첨부파일 정보를 추가하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dSearchP2pCnslAtchFile">
+            <methodName>[DM]1대1문의등록첨부파일조회</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLATCHFILE001_dSearchP2pCnslAtchFile</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 첨부파일 정보를 조회하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dUpdateP2pCnslAtchFile">
+            <methodName>[DM]1대1문의등록첨부파일수정</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLATCHFILE001_dUpdateP2pCnslAtchFile</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 첨부파일 정보를 수정하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+    </method-list>
+    <xsql/>
+    <history>
+        <created date="2014-12-11T17:48:00" user="이승훈 (leeseunghun)"/>
+    </history>
+</bizUnit>

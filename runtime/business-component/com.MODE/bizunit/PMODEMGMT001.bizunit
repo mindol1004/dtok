@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bizUnit id="PMODEMGMT001">
+    <bizUnitName>[PU]모드관리</bizUnitName>
+    <parentClassXd>BPU</parentClassXd>
+    <componentId>com.MODE</componentId>
+    <description/>
+    <method-list>
+        <method id="pSearchToDay">
+            <methodName>[PM]금일의 요일 조회</methodName>
+            <transactionId>com.MODE@PMODEMGMT001_pSearchToDay</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description/>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2015-01-27T15:03:46" user="이승훈2 (gunyoung)"/>
+            </history>
+        </method>
+        <method id="pSearchday">
+            <methodName>[PM]모드관리요일조회</methodName>
+            <transactionId>com.MODE@PMODEMGMT001_pSearchday</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description/>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2015-01-27T10:24:08" user="이승훈2 (gunyoung)"/>
+            </history>
+        </method>
+        <method id="pSaveModeMgmt">
+            <methodName>[PM]모드관리저장</methodName>
+            <transactionId>com.MODE@PMODEMGMT001_pSaveModeMgmt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description/>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2015-01-28T11:25:13" user="이승훈2 (gunyoung)"/>
+            </history>
+        </method>
+        <method id="pSearchModeMgmt">
+            <methodName>[PM]모드관리조회</methodName>
+            <transactionId>com.MODE@PMODEMGMT001_pSearchModeMgmt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description/>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2015-01-27T09:53:01" user="이승훈2 (gunyoung)"/>
+            </history>
+        </method>
+    </method-list>
+    <xsql/>
+    <history>
+        <created date="2015-01-27T09:52:03" user="이승훈2 (gunyoung)"/>
+    </history>
+</bizUnit>

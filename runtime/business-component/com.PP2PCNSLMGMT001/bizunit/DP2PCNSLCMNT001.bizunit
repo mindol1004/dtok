@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bizUnit id="DP2PCNSLCMNT001">
+    <bizUnitName>[DU]1대1문의등록댓글관리</bizUnitName>
+    <parentClassXd>BDU</parentClassXd>
+    <componentId>com.PP2PCNSLMGMT001</componentId>
+    <description>[DU]1대1문의등록</description>
+    <method-list>
+        <method id="dDeleteP2pCnslCmnt">
+            <methodName>[DM]1대1문의등록댓글삭제</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLCMNT001_dDeleteP2pCnslCmnt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 댓글 정보를 삭제하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dInsertP2pCnslCmnt">
+            <methodName>[DM]1대1문의등록댓글저장</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLCMNT001_dInsertP2pCnslCmnt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 댓글 정보를 추가하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dSearchP2pCnslCmnt">
+            <methodName>[DM]1대1문의등록댓글조회</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLCMNT001_dSearchP2pCnslCmnt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 댓글 정보를 조회하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+        <method id="dUpdateP2pCnslCmnt">
+            <methodName>[DM]1대1문의등록댓글수정</methodName>
+            <transactionId>com.PP2PCNSLMGMT001@DP2PCNSLCMNT001_dUpdateP2pCnslCmnt</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>1:1문의 댓글 정보를 수정하는 메소드</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-11T16:44:40" user="이승훈 (leeseunghun)"/>
+            </history>
+        </method>
+    </method-list>
+    <xsql/>
+    <history>
+        <created date="2014-12-11T17:48:00" user="이승훈 (leeseunghun)"/>
+    </history>
+</bizUnit>

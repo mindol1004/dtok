@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DBIZTRGT001">
+	<select id="dSearchBizTrgt" resultClass="hmap" fetchSize="50" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dSearchBizTrgt  */
+/* IO: 이승훈2,2015-01-26T12:54:06(이승훈2,2015-01-22T15:56:02) */
+SELECT Y.*, (select out_org_nm from 
+              ps_mng.tbas_out_org_dtl_mgmt a
+              left join ps_mng.tbas_out_org_mgmt b
+              on (a.out_org_id = b.out_org_id)
+              where out_org_dtl_id = y.biz_typ_cd) as HDQT_PART_ORG_NM
+              
+              , ( SELECT OUT_ORG_ID
+				  FROM PS_MNG.TBAS_OUT_ORG_DTL_MGMT
+				  WHERE out_org_dtl_id = y.BIZ_TYP_CD
+				  ) AS HDQT_PART_ORG_ID
+		
+	FROM (
+		SELECT ROWNUM AS RN  
+     		, Z.*
+ 		FROM (
+				SELECT 
+        			 X.BIZ_ID
+				, X.BIZ_TYP_CD
+				, X.BIZ_TITL_NM
+				, X.SALE_DEPT_ORG_NM
+				, X.ATCH_YN
+				, F_MASKING('N',X.RGSTR_NM) AS RGSTR_NM
+				, X.RGSTR_DT
+				, ( SELECT NVL(COUNT(I.READ_MGMT_ID) , 0)
+				  FROM DSM_READR_MGMT I
+				  WHERE I.READ_MGMT_ID =  X.BIZ_ID
+				) VIEW_CNT /* 조회건수 */
+				, X.RGST_ORG_ID
+				, X.RGST_OUT_ORG_ID
+			FROM (
+      
+
+				SELECT A.BIZ_ID
+					, A.BIZ_TYP_CD
+              		,(SELECT OUT_ORG_DTL_NM FROM PS_MNG.TBAS_OUT_ORG_DTL_MGMT WHERE A.BIZ_TYP_CD = OUT_ORG_DTL_ID AND DEL_YN ='N') SALE_DEPT_ORG_NM
+              		, A.BIZ_TITL_NM
+					, ( SELECT DECODE(COUNT(X.ATCH_MGMT_ID),0,'N','Y') 
+						FROM DSM_ATCH_FILE_MGMT X
+						WHERE A.BIZ_ID = X.ATCH_MGMT_ID) AS ATCH_YN
+              		, C.USER_NM AS RGSTR_NM
+              		, TO_CHAR(A.UPD_DTM,'YYYY-MM-DD') AS RGSTR_DT
+              		, A.RGST_ORG_ID
+              		, A.RGST_OUT_ORG_ID
+        		FROM DSM_BIZTRGT A
+        		JOIN ( SELECT BIZ_ID FROM DSM_BIZ_RCV_GRP WHERE 1=1
+           				]]><isNotEmpty property="AUTH_GRP_ID"><![CDATA[
+						AND AUTH_GRP_ID = #AUTH_GRP_ID#
+           				]]></isNotEmpty><![CDATA[
+           				GROUP BY  BIZ_ID
+         				) B ON (B.BIZ_ID = A.BIZ_ID)
+        		LEFT JOIN PS_MNG.TBAS_USER_MGMT C ON (C.USER_ID = A.RGSTR_ID)
+        		WHERE A.RGST_OUT_ORG_ID =  #onlineContext.userInfo.OUT_ORG_ID#
+
+        		UNION
+    			SELECT A.BIZ_ID
+              		, A.BIZ_TYP_CD
+              		,(SELECT OUT_ORG_DTL_NM FROM PS_MNG.TBAS_OUT_ORG_DTL_MGMT WHERE A.BIZ_TYP_CD = OUT_ORG_DTL_ID AND DEL_YN ='N') SALE_DEPT_ORG_NM
+              		, A.BIZ_TITL_NM
+              		, ( SELECT DECODE(COUNT(X.ATCH_MGMT_ID),0,'N','Y') 
+                  		FROM DSM_ATCH_FILE_MGMT X
+                  		WHERE A.BIZ_ID = X.ATCH_MGMT_ID) AS ATCH_YN
+              		, C.USER_NM AS RGSTR_NM
+              		, TO_CHAR(A.UPD_DTM,'YYYY-MM-DD') AS RGSTR_DT
+              		, A.RGST_ORG_ID
+              		, A.RGST_OUT_ORG_ID
+        		FROM DSM_BIZTRGT A
+        		JOIN ( SELECT BIZ_ID FROM DSM_BIZ_RCV_GRP WHERE 1=1
+           				]]><isNotEmpty property="AUTH_GRP_ID"><![CDATA[
+						AND AUTH_GRP_ID = #AUTH_GRP_ID#
+           				]]></isNotEmpty><![CDATA[
+           				GROUP BY  BIZ_ID
+         				) B ON (B.BIZ_ID = A.BIZ_ID)
+        		LEFT JOIN PS_MNG.TBAS_USER_MGMT C ON (C.USER_ID = A.RGSTR_ID)
+        		WHERE A.RGST_OUT_ORG_ID IN (SELECT OUT_ORG_ID FROM DSM_DATA_USE_AUTH WHERE USER_ID = #onlineContext.userInfo.loginId#)
+
+      		) X
+      		WHERE 1=1 AND  x.RGSTR_DT BETWEEN TO_DATE(#FROM_DT#||'000000','YYYYMMDDHH24MISS') AND TO_DATE(#TO_DT#||'235959','YYYYMMDDHH24MISS')
+  	  	]]><isNotEmpty property="SALE_DEPT_ORG_ID"><![CDATA[
+	   AND x.BIZ_TYP_CD = #SALE_DEPT_ORG_ID#
+   	]]></isNotEmpty><![CDATA[
+      		ORDER BY BIZ_ID DESC
+  		) Z
+	)Y WHERE RN BETWEEN (#page#-1)*#page_size#+1 AND #page#*#page_size#]]>
+	</select>
+	<select id="dSearchBizTrgtCnt" resultClass="hmap" fetchSize="50" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dSearchBizTrgtCnt  */
+/* IO: 이승훈2,2015-01-22T16:26:04(이승훈2,2015-01-22T16:26:04) */
+
+  
+  
+  SELECT COUNT(1) AS CNT
+	FROM (
+		SELECT A.BIZ_ID
+			, A.BIZ_TYP_CD
+			, A.BIZ_TITL_NM
+			, ( SELECT DECODE(COUNT(X.ATCH_MGMT_ID),0,'N','Y') 
+				FROM DSM_ATCH_FILE_MGMT X
+				WHERE A.BIZ_ID = X.ATCH_MGMT_ID) AS ATCH_YN
+			, C.USER_NM AS RGSTR_NM
+			, TO_CHAR(A.UPD_DTM,'YYYY-MM-DD') AS RGSTR_DT
+			, A.RGST_ORG_ID
+			, A.RGST_OUT_ORG_ID
+		FROM DSM_BIZTRGT A
+		JOIN ( SELECT BIZ_ID FROM DSM_BIZ_RCV_GRP WHERE 1=1
+				GROUP BY  BIZ_ID
+				) B ON (B.BIZ_ID = A.BIZ_ID)
+		LEFT JOIN PS_MNG.TBAS_USER_MGMT C ON (C.USER_ID = A.RGSTR_ID)
+		WHERE A.RGST_OUT_ORG_ID = #onlineContext.userInfo.OUT_ORG_ID#
+    
+		UNION
+		SELECT A.BIZ_ID
+			, A.BIZ_TYP_CD
+			, A.BIZ_TITL_NM
+			, ( SELECT DECODE(COUNT(X.ATCH_MGMT_ID),0,'N','Y') 
+				FROM DSM_ATCH_FILE_MGMT X
+				WHERE A.BIZ_ID = X.ATCH_MGMT_ID) AS ATCH_YN
+			, C.USER_NM AS RGSTR_NM
+			, TO_CHAR(A.UPD_DTM,'YYYY-MM-DD') AS RGSTR_DT
+			, A.RGST_ORG_ID
+			, A.RGST_OUT_ORG_ID
+   		FROM DSM_BIZTRGT A
+   		JOIN ( SELECT BIZ_ID FROM DSM_BIZ_RCV_GRP WHERE 1=1
+				GROUP BY  BIZ_ID
+				) B ON (B.BIZ_ID = A.BIZ_ID)
+   		LEFT JOIN PS_MNG.TBAS_USER_MGMT C ON (C.USER_ID = A.RGSTR_ID)
+   		WHERE A.RGST_OUT_ORG_ID IN (SELECT OUT_ORG_ID FROM DSM_DATA_USE_AUTH WHERE USER_ID = #onlineContext.userInfo.loginId#)
+	) X
+	WHERE 1=1
+AND X.RGSTR_DT BETWEEN TO_DATE(#FROM_DT#||'000000','YYYYMMDDHH24MISS') AND TO_DATE(#TO_DT#||'235959','YYYYMMDDHH24MISS')
+ 	]]><isNotEmpty property="SALE_DEPT_ORG_ID"><![CDATA[
+	   AND X.BIZ_TYP_CD = #SALE_DEPT_ORG_ID#
+   	]]></isNotEmpty><![CDATA[]]>
+	</select>
+	<select id="dDetailBizTrgt" resultClass="hmap" fetchSize="50" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dDetailBizTrgt  */
+/* IO: 이승훈2,2015-01-23T17:37:24(이승훈2,2015-01-22T15:41:14) */
+SELECT A.BIZ_ID
+		, A.BIZ_TITL_NM
+		, A.BIZ_TYP_CD AS SALE_DEPT_ORG_ID
+	    , C.OUT_ORG_DTL_NM AS SALE_DEPT_ORG_NM
+        , D.OUT_ORG_ID AS HDQT_PART_ORG_ID
+         , D.OUT_ORG_NM AS HDQT_PART_ORG_NM
+       	, F_MASKING('N', B.USER_NM) AS RGSTR_NM
+       	, TO_CHAR(A.UPD_DTM,'YYYY-MM-DD') AS RGSTR_DT
+       	, A.BIZ_CTT
+  	FROM DSM_BIZTRGT A
+  	LEFT JOIN PS_MNG.TBAS_USER_MGMT B ON (A.UPDR_ID = B.USER_ID)
+    LEFT JOIN PS_MNG.TBAS_OUT_ORG_DTL_MGMT C ON (A.BIZ_TYP_CD = C.OUT_ORG_DTL_ID)
+    LEFT JOIN PS_MNG.TBAS_OUT_ORG_MGMT D ON (C.OUT_ORG_ID = D.OUT_ORG_ID)
+ WHERE A.BIZ_ID = #BIZ_ID#]]>
+	</select>
+	<update id="dUpdateBizTrgt" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dUpdateBizTrgt  */
+/* IO: 이승훈2,2015-01-22T16:28:51(이승훈2,2015-01-22T16:28:51) */
+  	UPDATE DSM_BIZTRGT SET
+			BIZ_TYP_CD      = #SALE_DEPT_ORG_ID#
+			, BIZ_TITL_NM	= #BIZ_TITL_NM#
+     		, BIZ_CTT     = #BIZ_CTT:CLOB#
+     		, UPDR_ID       = #onlineContext.userInfo.loginId#
+     		, UPD_DTM       = SYSDATE
+ 	WHERE BIZ_ID = #BIZ_ID#]]>
+	</update>
+	<select id="dSearchSeqBizTrgt" resultClass="hmap" fetchSize="50" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dSearchSeqBizTrgt  */
+/* IO: 이승훈2,2015-01-22T16:27:20(이승훈2,2015-01-22T16:27:20) */
+SELECT 'BIZ' || LPAD(DSM_BIZ_SEQ.NEXTVAL, 12, '0') AS BIZ_ID FROM DUAL]]>
+	</select>
+	<insert id="dInsertBizTrgt" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dInsertBizTrgt  */
+/* IO: 이승훈2,2015-01-22T17:18:18(이승훈2,2015-01-22T16:56:26) */
+INSERT INTO DSM_BIZTRGT
+		( BIZ_ID
+		, BIZ_TYP_CD
+  		, BIZ_TITL_NM
+  		, BIZ_CTT
+  		, RGSTR_ID
+  		, RGST_DTM
+  		, UPDR_ID
+  		, UPD_DTM
+  		, RGST_ORG_ID
+  		, RGST_OUT_ORG_ID )
+	VALUES
+		( #BIZ_ID#
+  		, #SALE_DEPT_ORG_ID#
+  		, #BIZ_TITL_NM#
+  		, #BIZ_CTT#
+  		, #onlineContext.userInfo.loginId#
+  		, SYSDATE
+  		, #onlineContext.userInfo.loginId#
+  		, SYSDATE
+  		, #onlineContext.userInfo.NEW_ORG_ID#
+  		, #onlineContext.userInfo.OUT_ORG_ID# )]]>
+	</insert>
+	<delete id="dDeleteBizTrgt" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dDeleteBizTrgt  */
+/* IO: 이승훈2,2015-01-22T16:29:32(이승훈2,2015-01-22T16:29:09) */
+DELETE FROM DSM_BIZTRGT WHERE BIZ_ID = #BIZ_ID#]]>
+	</delete>
+	<select id="dSearchBizCommCnt" parameterClass="map" resultClass="hmap" fetchSize="50" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dSearchBizCommCnt  */
+/* IO: 이승훈2,2015-01-23T11:40:08(이승훈2,2015-01-22T16:07:19) */
+SELECT COUNT(1) AS CNT
+	FROM (
+		SELECT A.BIZ_ID
+       		, A.BIZ_TYP_CD
+       		, A.BIZ_TITL_NM
+       		, A.BIZ_CTT
+       		, ( SELECT DECODE(COUNT(X.ATCH_MGMT_ID),0,'N','Y') 
+           		FROM DSM_ATCH_FILE_MGMT X
+           		WHERE A.BIZ_ID = X.ATCH_MGMT_ID) AS ATCH_YN
+       		, D.USER_NM AS RGSTR_NM
+       		, TO_CHAR(A.UPD_DTM,'YYYY-MM-DD') AS RGSTR_DT
+       		, A.RGST_ORG_ID
+       		, A.RGST_OUT_ORG_ID
+   		FROM DSM_BIZTRGT A
+   		JOIN ( SELECT A.BIZ_ID
+				FROM DSM_BIZ_RCV_GRP A, DSM_USER_AUTH B
+				WHERE A.AUTH_GRP_ID = B.AUTH_GRP_ID
+				AND B.USER_ID = #onlineContext.userInfo.loginId#
+				GROUP BY A.BIZ_ID
+                ) B ON (A.BIZ_ID = B.BIZ_ID)
+		JOIN ( SELECT BIZ_ID
+				FROM DSM_BIZ_RCV_ORG 
+				WHERE 1=1
+				AND OUT_ORG_ID = #onlineContext.userInfo.HDQT_PART_ORG_ID#
+				GROUP BY BIZ_ID
+                ) C ON (A.BIZ_ID = C.BIZ_ID)
+   		LEFT JOIN PS_MNG.TBAS_USER_MGMT D ON (D.USER_ID = A.RGSTR_ID)
+	) X  	
+  ]]><isNotEmpty property="SALE_DEPT_ORG_ID"><![CDATA[
+	   WHERE x.BIZ_TYP_CD = #SALE_DEPT_ORG_ID#
+   	]]></isNotEmpty><![CDATA[]]>
+	</select>
+	<select id="dSearchBizComm" parameterClass="map" resultClass="hmap" fetchSize="50" ><![CDATA[/* Biz: com.psnm.dtok.biz.biztrgt.db.DBIZTRGT001.dSearchBizComm  */
+/* IO: 이승훈2,2015-01-23T11:41:35(이승훈2,2015-01-22T15:40:58) */
+SELECT * 
+	FROM (
+		SELECT ROWNUM AS RN  
+     		, Z.*
+ 		FROM (
+    		SELECT 
+				 X.BIZ_ID
+				, X.BIZ_TYP_CD
+				, X.BIZ_TITL_NM
+				, X.SALE_DEPT_ORG_NM
+				, X.BIZ_CTT
+				, X.ATCH_YN
+				, F_MASKING('N',X.RGSTR_NM) AS RGSTR_NM
+				, X.RGSTR_DT
+				, ( SELECT NVL(COUNT(I.READ_MGMT_ID) , 0)
+				  FROM DSM_READR_MGMT I
+				  WHERE I.READ_MGMT_ID =  X.BIZ_ID
+				) VIEW_CNT 
+				, X.RGST_ORG_ID
+				, X.RGST_OUT_ORG_ID
+			FROM (
+    			SELECT A.BIZ_ID
+              		, A.BIZ_TYP_CD
+              		, A.BIZ_TITL_NM
+					,(SELECT OUT_ORG_DTL_NM FROM PS_MNG.TBAS_OUT_ORG_DTL_MGMT WHERE A.BIZ_TYP_CD = OUT_ORG_DTL_ID AND DEL_YN ='N') SALE_DEPT_ORG_NM
+              		, A.BIZ_CTT
+              		, ( SELECT DECODE(COUNT(X.ATCH_MGMT_ID),0,'N','Y') 
+                  		FROM DSM_ATCH_FILE_MGMT X
+                  		WHERE A.BIZ_ID = X.ATCH_MGMT_ID) AS ATCH_YN
+              		, D.USER_NM AS RGSTR_NM
+              		, TO_CHAR(A.UPD_DTM,'YYYY-MM-DD') AS RGSTR_DT
+              		, A.RGST_ORG_ID
+              		, A.RGST_OUT_ORG_ID
+        		FROM DSM_BIZTRGT A
+        		JOIN ( SELECT A.BIZ_ID
+						FROM DSM_BIZ_RCV_GRP A, DSM_USER_AUTH B
+ 						WHERE A.AUTH_GRP_ID = B.AUTH_GRP_ID
+						AND B.USER_ID = #onlineContext.userInfo.loginId#
+                       	GROUP BY A.BIZ_ID
+                     ) B ON (A.BIZ_ID = B.BIZ_ID)
+                JOIN ( SELECT BIZ_ID
+						FROM DSM_BIZ_RCV_ORG 
+						WHERE 1=1
+						AND OUT_ORG_ID = #onlineContext.userInfo.HDQT_PART_ORG_ID#
+						GROUP BY BIZ_ID
+                     ) C ON (A.BIZ_ID = C.BIZ_ID)
+        		LEFT JOIN PS_MNG.TBAS_USER_MGMT D ON (D.USER_ID = A.RGSTR_ID)
+      		) X
+  	]]><isNotEmpty property="SALE_DEPT_ORG_ID"><![CDATA[
+	   WHERE X.BIZ_TYP_CD = #SALE_DEPT_ORG_ID#
+   	]]></isNotEmpty><![CDATA[
+       		ORDER BY  BIZ_ID DESC
+  		) Z
+	) 
+  WHERE RN BETWEEN (#page#-1)*#page_size#+1 AND #page#*#page_size#]]>
+	</select>
+</sqlMap>

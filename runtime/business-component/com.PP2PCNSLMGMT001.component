@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component fqId="com.PP2PCNSLMGMT001">
+    <componentName>[BC]공통-1대1문의등록</componentName>
+    <bizGroupXd>common</bizGroupXd>
+    <packageName>com.psnm.dtok.com.pp2pcnslmgmt001</packageName>
+    <componentTypeXd>BC</componentTypeXd>
+    <description>[BC]공통-1대1문의등록</description>
+    <custom-props/>
+    <history>
+        <created date="2014-12-11T17:39:08" user="이승훈 (leeseunghun)"/>
+    </history>
+</component>

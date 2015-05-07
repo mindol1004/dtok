@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bizUnit id="DBIZRCVORG001">
+    <bizUnitName>[DU]영업목표/현황관리 수신조직</bizUnitName>
+    <parentClassXd>BDU</parentClassXd>
+    <componentId>biz.BIZTRGT</componentId>
+    <description>영업목표/현황관리 수신조직 DU</description>
+    <method-list>
+        <method id="dSearchBizRcvOrgTarget">
+            <methodName>[DM]영업목표/현황관리 수신대상조직조회</methodName>
+            <transactionId>biz.BIZTRGT@DBIZRCVORG001_dSearchBizRcvOrgTarget</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>영업목표/현황관리 수신대상조직조회 DM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-05T17:25:58" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+        <method id="dDeleteBizRcvOrg">
+            <methodName>[DM]영업목표/현황관리 수신조직삭제</methodName>
+            <transactionId>biz.BIZTRGT@DBIZRCVORG001_dDeleteBizRcvOrg</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>영업목표/현황관리 수신조직삭제 DM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-15T10:49:30" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+        <method id="dSearchBizRcvOrgObject">
+            <methodName>[DM]영업목표/현황관리 수신할조직조회</methodName>
+            <transactionId>biz.BIZTRGT@DBIZRCVORG001_dSearchBizRcvOrgObject</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>영업목표/현황관리 수신할조직조회 DM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-05T16:46:47" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+        <method id="dInsertBizRcvOrg">
+            <methodName>[DM]영업목표/현황조회 수신조직저장</methodName>
+            <transactionId>biz.BIZTRGT@DBIZRCVORG001_dInsertBizRcvOrg</transactionId>
+            <webServiceOpenXd>0</webServiceOpenXd>
+            <fixedLengthXd>0</fixedLengthXd>
+            <description>영업목표/현황관리 수신조직저장 DM</description>
+            <inputMethodIo>
+                <fields/>
+            </inputMethodIo>
+            <outputMethodIo>
+                <fields/>
+            </outputMethodIo>
+            <custom-props/>
+            <history>
+                <created date="2014-12-15T11:27:55" user="한상곤 (hansanggon)"/>
+            </history>
+        </method>
+    </method-list>
+    <xsql/>
+    <history>
+        <created date="2014-12-05T15:14:30" user="한상곤 (hansanggon)"/>
+    </history>
+</bizUnit>
